@@ -38,4 +38,5 @@ $ echo Hello | brow --group 1
 $ echo Hi | brow --group 2
 $ echo World | brow --group 1
 ```
-The example above whould result in `Hello World` in dummy process 1 and `Hi` in dummy process 2.
+
+The example above whould result in group 1 containing `Hello World` and group 2 containing `Hi`.
