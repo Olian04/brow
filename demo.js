@@ -1,4 +1,5 @@
-[
+let i = 0;
+const lines = [
     'a',
     'bb',
     'ccc',
@@ -6,7 +7,8 @@
     'eeeee',
     'ffffff',
     'ggggggg'
-].forEach(v => {
-    for (let i = 0; i < 1000**2; i++) {};
-    console.log(v);
-})
+];
+
+setInterval(() => {
+    console.log(lines[i++ % lines.length]);
+}, 1000);

@@ -4,7 +4,7 @@
   "description": "CLI tool for redirecting logs from the terminal into the browser.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node demo.js | node index.js"
   },
   "repository": {
     "type": "git",
