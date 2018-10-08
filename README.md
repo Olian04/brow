@@ -40,3 +40,4 @@ $ echo World | brow --group 1
 ```
 
 The example above whould result in group 1 containing `Hello World` and group 2 containing `Hi`.
+
