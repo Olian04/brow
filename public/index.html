@@ -39,7 +39,6 @@
                 .catch(console.error)
                 .then(res => res.json())
                 .then(groups => {
-                    console.log(groups);
                     groups.forEach(v => {
                         const li = document.createElement('li');
                         li.innerHTML = `<a href="#${v}" onclick="window.location.reload()">${v}</a>`;
@@ -50,7 +49,7 @@
             groupsEl.style.display = 'none';
             const socket = io();
             const term = new Terminal();
-            term.open(logsEl);
+            term.open(logsEl, false);
             term.fit();
             socket.on('log', data => {
                 if (data.group === group) {

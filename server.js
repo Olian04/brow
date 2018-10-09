@@ -1,5 +1,14 @@
 require('better-logging')(console);
+const path = require('path');
 const express = require('express');
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+
+// Setup database
+const adapter = new FileSync(path.join(__dirname, 'db.json'));
+const db = low(adapter);
+db.defaults({ logs: [] })
+  .write();
 
 const api = express();
 const app = express();
@@ -16,23 +25,31 @@ app.use((req, res, next) => {
 app.get('/', express.static('public'));
 app.use('/api', api);
 
-const lines = [];
 api.post('/logs', (req, res) => {
     if (req.body.version !== 1) {
         res.status(400).send('Bad Request: Unsupported version.');
     }
     req.body.logs.forEach(log => {
-        lines.push({ group: req.body.group, log });
+        db.get('logs')
+            .push({ group: req.body.group, log })
+            .write();
     });
     io.emit(`log`, { group: req.body.group, logs: req.body.logs });
     res.sendStatus(200);
 });
 api.get('/logs', (req, res) => {
-    res.contentType('json').json(lines);
+    //TODO: Rewrite this so that it takes group into account
+    const data = db
+        .get('logs')
+        .value();
+    res.contentType('json').json(data);
 });
 api.get('/groups', (req, res) => {
+    const data = db
+        .get('logs')
+        .value();
     res.contentType('json').json(
-        Object.keys(lines.reduce((res, v) => 
+        Object.keys(data.reduce((res, v) => 
             ({...res, [v.group]: true}),{})
         )
     );
