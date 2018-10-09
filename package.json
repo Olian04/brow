@@ -1,7 +1,8 @@
 {
-  "name": "brow",
-  "version": "1.0.0",
+  "name": "@olian/brow",
+  "version": "1.0.1",
   "description": "CLI tool for redirecting logs from the terminal into the browser.",
+  "private": false,
   "scripts": {
     "start": "node demo.js | node brow.js"
   },
