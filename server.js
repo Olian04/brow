@@ -6,7 +6,9 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
 // Setup database
-const adapter = new FileSync(path.join(__dirname, 'db.json'));
+const dbPath = process.argv[2];
+if (!dbPath) throw new Error('Expected path for database to be provided. brow-server <path>');
+const adapter = new FileSync(path.join(process.cwd(), dbPath, 'brow.db.json'));
 const db = low(adapter);
 db.defaults({ logs: [] })
   .write();
