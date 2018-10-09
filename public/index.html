@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Brow</title>
+</head>
+<body>
+    <ul id="logs"></ul>
+    <script>
+        const logs = document.getElementById('logs');
+        fetch('/api/logs')
+            .catch(console.error)
+            .then(res => res.json())
+            .then(lines => {
+                lines.forEach(v => {
+                    const log = document.createElement('li');
+                    log.innerText = v;
+                    logs.appendChild(log);
+                });
+            });
+    </script>
+</body>
+</html>
