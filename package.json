@@ -1,11 +1,8 @@
 {
   "name": "@olian/brow",
-  "version": "2.2.1",
+  "version": "2.2.3",
   "description": "CLI tool for redirecting logs from the terminal into the browser.",
   "private": false,
-  "scripts": {
-    "start": "node demo.js | node brow.js"
-  },
   "bin": {
     "brow": "./brow.js",
     "brow-server": "./server.js"
@@ -14,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/Olian04/brow.git"
   },
-  "author": "",
+  "author": "Olian04",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Olian04/brow/issues"
