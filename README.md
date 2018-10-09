@@ -14,4 +14,4 @@ _(You dont have to provide your own group name, in the example above it was "foo
 
 1. Install brow: `npm i -g @olian/brow`
 2. Spin up the brow server by running: `brow-server <path_to_store_database>` but replace `<path_to_store_database>` with a path relative to your current directory. Ex: `brow-server .` will create a `brow.db.json` file in the current directory.
-3. Use brow by piping anything into it: `cat Hello World | brow`
+3. Use brow by piping anything into it: `echo Hello World | brow`
