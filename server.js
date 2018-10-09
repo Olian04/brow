@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 require('better-logging')(console);
 const path = require('path');
 const express = require('express');

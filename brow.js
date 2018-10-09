@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const axios = require('axios').default;
 
 const GROUP = process.argv[2] || process.cwd().split('/').reverse()[0];

@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node demo.js | node brow.js"
   },
-  "directories": {
-    "bin": "bin"
+  "bin": {
+    "brow": "./brow.js",
+    "brow-server": "./server.js"
   },
   "repository": {
     "type": "git",
