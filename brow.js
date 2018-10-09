@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 
-const GROUP =  process.cwd();
+const GROUP = process.argv[2] || process.cwd().split('/').reverse()[0];
 const DEBUG = true;
 const SHOULD_ECHO = true;
 const forEachLine = (stream, cb) => {
@@ -17,8 +17,9 @@ process.stdin.on('readable', () => {
         if (SHOULD_ECHO) {
             process.stdout.write(v + '\n'); // Echo
         }
-        axios.post('/api/logs', {
+        axios.post(`/api/logs`, {
             version: 1,
+            group: GROUP,
             logs: [v]
         }, {
             baseURL: 'http://localhost:10005'
@@ -31,7 +32,12 @@ process.stdin.on('readable', () => {
 });
 
 process.stdin.on('end', () => {
-    //process.stdout.write('end\n');
+    process.stdout.write('Connections closed unexpectedly, ' + SHOULD_ECHO ? 'redirecting logging to terminal\n' : 'because echo is disabled further logging will be lost\n');
+    if (SHOULD_ECHO) {
+        forEachLine(process.stdin, v => {
+            process.stdout.write(v + '\n'); // Echo
+        });
+    }
 });
 
-console.log('Mirroring logs at localhost:10005');
+console.log(`Mirroring logs at localhost:10005/#${GROUP}`);

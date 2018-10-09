@@ -5,21 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Brow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/2.9.2/xterm.min.css">
+    <style>
+        * { margin: 0; padding: 0; }
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+        #groups::before {
+            content: 'See logs for group: ';
+        }
+        #logs {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <ul id="logs"></ul>
+    <center>
+        <ul id="groups"></ul>
+    </center>
+    <div id="logs"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/2.9.2/xterm.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/2.9.2/addons/fit/fit.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-        const logs = document.getElementById('logs');
-        fetch('/api/logs')
-            .catch(console.error)
-            .then(res => res.json())
-            .then(lines => {
-                lines.forEach(v => {
-                    const log = document.createElement('li');
-                    log.innerText = v;
-                    logs.appendChild(log);
+        const group = window.location.hash.substr(1);
+        const groupsEl = document.getElementById('groups');
+        const logsEl = document.getElementById('logs');
+        if (!group) {
+            logsEl.style.display = 'none';
+            fetch('/api/groups')
+                .catch(console.error)
+                .then(res => res.json())
+                .then(groups => {
+                    console.log(groups);
+                    groups.forEach(v => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="#${v}" onclick="window.location.reload()">${v}</a>`;
+                        groupsEl.appendChild(li);
+                    });
                 });
+        } else {
+            groupsEl.style.display = 'none';
+            const socket = io();
+            const term = new Terminal();
+            term.open(logsEl);
+            term.fit();
+            socket.on('log', data => {
+                if (data.group === group) {
+                    data.logs.forEach(v => {
+                        term.writeln(v);
+                    });
+                }
             });
+            fetch('/api/logs')
+                .catch(console.error)
+                .then(res => res.json())
+                .then(lines => {
+                    lines.forEach(v => {
+                        if (v.group === group) {
+                            term.writeln(v.log);
+                        }
+                    });
+                });
+        }
     </script>
 </body>
 </html>
