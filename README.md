@@ -3,7 +3,7 @@ CLI tool for viewing cli logs in the browser.
 
 ```
 $ node helloworld.js | brow foobar
-Mirroring logs at localhost:10005/#foobar
+Mirroring logs at localhost:10005/?foobar
 ```
 
 Navigate to `localhost:10005` and select "foobar" from the list and you will start seeing the logs from the `node index.js` process.
