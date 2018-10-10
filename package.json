@@ -15,7 +15,8 @@
     "logging",
     "cli",
     "pipe",
-    "logs"
+    "logs",
+    "selfhosted"
   ],
   "author": "Olian04",
   "license": "MIT",
