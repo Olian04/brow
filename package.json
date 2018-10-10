@@ -1,6 +1,6 @@
 {
   "name": "@olian/brow",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "CLI tool for redirecting logs from the terminal into the browser.",
   "private": false,
   "bin": {
@@ -11,6 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/Olian04/brow.git"
   },
+  "keywords": [
+    "logging",
+    "cli",
+    "pipe",
+    "logs"
+  ],
   "author": "Olian04",
   "license": "MIT",
   "bugs": {
@@ -18,9 +24,6 @@
   },
   "homepage": "https://github.com/Olian04/brow#readme",
   "dependencies": {
-    "@types/axios": "^0.14.0",
-    "@types/lowdb": "^1.0.5",
-    "@types/socket.io": "^1.4.38",
     "axios": "^0.18.0",
     "better-logging": "^1.1.0",
     "express": "^4.16.3",
@@ -28,7 +31,10 @@
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/lowdb": "^1.0.6",
+    "@types/socket.io": "^1.4.38",
     "@types/express": "^4.16.0",
-    "@types/node": "^10.11.5"
+    "@types/node": "^10.11.6"
   }
 }
