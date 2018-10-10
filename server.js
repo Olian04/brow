@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 require('better-logging')(console);
 const path = require('path');
+const os = require('os');
+const fs = require('fs');
 const express = require('express');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
+const browDir = path.join(os.homedir(), '.brow');
+if (!fs.existsSync(browDir)) fs.mkdirSync(browDir);
+
 // Setup database
-const dbPath = process.argv[2];
-if (!dbPath) throw new Error('Expected path for database to be provided. brow-server <path>');
-const adapter = new FileSync(path.join(process.cwd(), dbPath, 'brow.db.json'));
+const adapter = new FileSync(path.join(browDir, 'db.json'));
 const db = low(adapter);
 db.defaults({ logs: [] })
   .write();
