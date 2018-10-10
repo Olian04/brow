@@ -33,7 +33,7 @@ try {
         });
     });
 
-    console.log(`Mirroring logs at localhost:10005/#${GROUP}`);
+    console.log(`Mirroring logs at localhost:10005/?${GROUP}`);
 } catch (e) {
     if (DEBUG) {
         throw e;

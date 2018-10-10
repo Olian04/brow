@@ -30,7 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/2.9.2/addons/fit/fit.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const group = window.location.hash.substr(1);
+        const group = window.location.search.substr(1);
         const groupsEl = document.getElementById('groups');
         const logsEl = document.getElementById('logs');
         if (!group) {
@@ -41,7 +41,7 @@
                 .then(groups => {
                     groups.forEach(v => {
                         const li = document.createElement('li');
-                        li.innerHTML = `<a href="#${v}" onclick="window.location.reload()">${v}</a>`;
+                        li.innerHTML = `<a href="?${v}" onclick="window.location.reload()">${v}</a>`;
                         groupsEl.appendChild(li);
                     });
                 });
