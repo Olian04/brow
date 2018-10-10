@@ -1,6 +1,6 @@
 {
   "name": "@olian/brow",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "CLI tool for redirecting logs from the terminal into the browser.",
   "private": false,
   "bin": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/Olian04/brow#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "better-logging": "^1.1.0",
+    "better-logging": "^1.2.0",
     "express": "^4.16.3",
     "lowdb": "^1.0.0",
     "socket.io": "^2.1.1"
