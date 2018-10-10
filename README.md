@@ -1,4 +1,4 @@
-# brow
+# [brow](https://www.npmjs.com/package/@olian/brow)
 CLI tool for viewing cli logs in the browser.
 
 ```
