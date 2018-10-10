@@ -1,6 +1,6 @@
 {
   "name": "@olian/brow",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "CLI tool for redirecting logs from the terminal into the browser.",
   "private": false,
   "bin": {
