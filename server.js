@@ -1,13 +1,15 @@
 #!/usr/bin/env node
-require('better-logging')(console, {}, log => {
-   if (db) {
-    db.get('logs')
-        .push({ group: 'brow-server', log })
-        .write();
-   }
-   if (io) {
-        io.emit(`log`, { group: 'brow-server', logs: [log] });
-   }
+require('better-logging')(console, {
+    onLogEmitted: log => {
+        if (db) {
+            db.get('logs')
+                .push({ group: 'brow-server', log })
+                .write();
+        }
+        if (io) {
+            io.emit(`log`, { group: 'brow-server', logs: [log] });
+        }
+    }
 });
 const path = require('path');
 const os = require('os');
