@@ -1,5 +1,5 @@
 # [brow](https://www.npmjs.com/package/@olian/brow)
-CLI tool for viewing cli logs in the browser.
+CLI tool for real-time log monitoring in your browser
 
 ```
 $ node helloworld.js | brow foobar
