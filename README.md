@@ -16,6 +16,9 @@ _(You dont have to provide your own group name, in the example above it was "foo
 2. Spin up the brow server by running: `brow-server`, this will create a `.brow` directory in your home directory, this is where your brow config and database will live.
 3. Use brow by piping anything into it: `echo Hello World | brow`
 
+__Note:__ By default the `|` operator only pipes stdout to stdin, this means that if you want brow to pick up on anything printed to stderr you will have to tell the shell to redirect stderr to stdout first. 
+<br>Ex: `command 2>&1 | brow`
+
 ## Why
 
-I started developing brow because I needed a tool that allowed me to collect logs from my home server in a single easy to reach place.
+I started developing brow because I needed a tool that allowed me to collect logs from my home server in a single easy to reach location.

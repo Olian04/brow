@@ -42,12 +42,14 @@ app.use((req, res, next) => {
 });
 app.get('/', express.static('public'));
 app.use('/api', api);
+/*
 app.use((req, res, next) => {
     // Error handling
     // None of the predefined pathes matched
     console.warn(DARK(req.method), req.url, console.color.Red+'404'+console.color.RESET);
     res.status(404).send('404 - File Not Found');
 });
+*/
 
 api.post('/logs', (req, res) => {
     if (req.body.version !== 1) {
