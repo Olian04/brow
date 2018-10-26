@@ -35,12 +35,19 @@ const io = require('socket.io')(http);
 const DARK = method => console.color.Dark_Gray + method + console.color.RESET;
 app.use(express.json());
 app.use((req, res, next) => {
+    // Log incoming request
     console.info(DARK(req.method), req.url, 
         Object.keys(req.body).length > 0 ? JSON.stringify(req.body) : '');
     next();
 });
 app.get('/', express.static('public'));
 app.use('/api', api);
+app.use((req, res, next) => {
+    // Error handling
+    // None of the predefined pathes matched
+    console.warn(DARK(req.method), req.url, console.color.Red+'404'+console.color.RESET);
+    res.status(404).send('404 - File Not Found');
+});
 
 api.post('/logs', (req, res) => {
     if (req.body.version !== 1) {
